@@ -13,8 +13,8 @@ const app = express();
 
 // --- CONFIGURACIÓN DE CORS ACTUALIZADA ---
 const whiteList = [
-    'https://bierland-publico.netlify.app', 
-    'https://bierland-admin.netlify.app'
+    'https://upcear-cms.netlify.app', 
+    'https://upcear-cms-admin.netlify.app'
 ];
 app.use(cors({
     origin: function (origin, callback) {
