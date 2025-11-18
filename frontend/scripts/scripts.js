@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = url;
     };
 
-    // ---- Contador funcional (ACTUALIZADO CON TODOS LOS CAMPOS) ----
+    // ---- Contador funcional ----
     const contadorEl = document.getElementById('contador');
 
     async function iniciarContadorYContenido() {
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         return;
                     }
 
-                    // CÁLCULO CORREGIDO - Incluye días completos
+                    // Días completos
                     const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
                     const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- CÓDIGO NUEVO PARA CARGAR FRANQUICIAS DINÁMICAMENTE ---
+    // --- Cargar franquicias dinámicamente ---
     
     const API_BASE_URL = 'https://upcear-cms.onrender.com/api/franquicias';
     const franquiciasContainer = document.getElementById('franquicias-container');
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             const franquicias = await response.json();
 
-            // Guardamos el último elemento (el de "próximamente")
+            // Guardamos el último elemento ("próximamente")
             const proximoElemento = franquiciasContainer.querySelector('.proximamente');
             // Limpiamos el contenedor (quitando el "próximamente" temporalmente)
             franquiciasContainer.innerHTML = '';
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 franquiciasContainer.appendChild(divFranquicia);
             });
 
-            // Volvemos a añadir el elemento "próximamente" al final
+            // Vuelve a añadir el elemento "próximamente" al final
             if (proximoElemento) {
                 franquiciasContainer.appendChild(proximoElemento);
             }
@@ -245,4 +245,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Llamamos a la nueva función para que se ejecute al cargar la página
     cargarFranquicias();
 
-}); // <-- Asegúrate de que este es el cierre final del DOMContentLoaded
+}); // Final del DOMContentLoaded
