@@ -1,6 +1,6 @@
 // admin/dashboard.js
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:5000/api';
+    const API_URL = 'https://upcear-cms.onrender.com/api';
     const token = localStorage.getItem('authToken');
     const franquiciasContainer = document.getElementById('franquicias-list');
     const logoutButton = document.getElementById('logout-btn');
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let logoPath = '';
             if (franquicia.logo_path && franquicia.logo_path.startsWith('uploads/')) {
                 // Es una imagen subida, la sirve el backend
-                logoPath = `http://localhost:5000/${franquicia.logo_path}`;
+                logoPath = `https://upcear-cms.onrender.com/${franquicia.logo_path}`;
             } else if (franquicia.logo_path) {
                 // Es una imagen estática (ej. src/chelab_logo.png)
                 logoPath = `../frontend/${franquicia.logo_path}`;
