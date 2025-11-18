@@ -1,7 +1,7 @@
-// admin/add-franquicia.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const API_URL = 'https://upcear-cms.onrender.com/api/franquicias';
-    const UPLOAD_URL = 'https://upcear-cms.onrender.com/api/upload'; // <-- AÑADIR
+    const UPLOAD_URL = 'https://upcear-cms.onrender.com/api/upload';
     const token = localStorage.getItem('authToken');
 
     // --- 1. Seguridad ---
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // ¡La llave!
+                    'Authorization': `Bearer ${token}` // Llave
                 },
                 body: JSON.stringify(dataToSave)
             });
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.msg || 'Error al crear la franquicia');
             }
             
-            // ¡Éxito!
+            // Mensaje
             alert('¡Franquicia creada con éxito!');
             window.location.href = 'dashboard.html'; // Volver al dashboard
         
