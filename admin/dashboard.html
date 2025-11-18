@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="dashboard-page">
+    
+    <header class="admin-header">
+        <h1>Dashboard - Bierland CMS</h1>
+        <button id="logout-btn" class="btn-logout">Cerrar Sesión</button>
+    </header>
+
+    <main class="dashboard-container">
+        <h2>Gestionar Franquicias</h2>
+        
+        <div class="card-actions" style="margin-bottom: 1.5rem; text-align: left; background: #f0f2f5; border: none; padding: 1rem;">
+            <a href="edit-global.html" class="btn" style="background: #0070C6; display: inline-block; width: auto; padding: 0.75rem 1.5rem;">Editar Página Principal</a>
+            <a href="add-franquicia.html" class="btn btn-save" style="margin-left: 1rem; background: #28a745; display: inline-block; width: auto; padding: 0.75rem 1.5rem;">+ Añadir Franquicia</a>
+        </div>
+
+        <div id="franquicias-list">
+            <p>Cargando franquicias...</p>
+        </div>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

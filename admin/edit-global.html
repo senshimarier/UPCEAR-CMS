@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Página Principal</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .form-container { max-width: 900px; margin: 2rem auto; }
+        fieldset { border: 1px solid #ddd; border-radius: 8px; margin-bottom: 2rem; background: #fff; }
+        legend { font-size: 1.3rem; font-weight: bold; color: #0A295F; padding: 0 0.5rem; }
+        .form-grid { display: grid; gap: 1rem; padding: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-weight: bold; margin-bottom: 0.5rem; color: #333; }
+        .form-group input, .form-group textarea { 
+            padding: 0.75rem; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            font-size: 1rem; 
+            box-sizing: border-box;
+        }
+        .form-group input[type="color"] {
+            height: 50px;
+            padding: 0.2rem;
+            cursor: pointer;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .btn-save { background: #28a745; color: white; }
+        .btn-back { 
+            text-decoration: none; 
+            color: white; 
+            margin-bottom: 1rem; 
+            display: inline-block;
+            background: #6c757d;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        .upload-status { margin-top: 0.5rem; font-size: 0.9rem; }
+        h4 { margin: 1rem 0 0.5rem 0; color: #333; }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <h1>Editar Página Principal</h1>
+        <button id="logout-btn" class="btn-logout">Cerrar Sesión</button>
+    </header>
+
+    <main class="dashboard-container">
+<a href="dashboard.html" 
+   style="
+        background: #6c757d;
+        color: white;
+        text-decoration: none;
+        display: inline-flex; /* evita que se estire */
+        align-items: center;
+        padding: 0.40rem 0.85rem;
+        font-size: 0.9rem;
+        border-radius: 12px;
+        font-family: inherit;
+        white-space: nowrap;
+        font-weight: 500;
+        width: auto;      /* evita que se haga grande */
+        max-width: fit-content; /* se ajusta al texto */
+   ">
+    ← Volver al Dashboard
+</a>
+        
+        <form id="global-form" class="form-container">
+            
+            <fieldset>
+                <legend>Configuración General</legend>
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="form-group">
+                        <label for="main-bg-color">Color de Fondo (Página)</label>
+                        <input type="color" id="main-bg-color">
+                    </div>
+                    <div class="form-group">
+                        <label for="main-text-color">Color de Texto (Página)</label>
+                        <input type="color" id="main-text-color">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Header (Barra de Navegación)</legend>
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="main-title">Título del Header (y enlace)</label>
+                        <input type="text" id="main-title">
+                    </div>
+                    <div class="form-group">
+                        <label for="header-bg-color">Color de Fondo (Header)</label>
+                        <input type="color" id="header-bg-color">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Portada y Contador</legend>
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="form-group">
+                        <label>Imagen Principal</label>
+                        <input type="text" id="main-image" placeholder="Sube una imagen..." readonly>
+                        <input type="file" id="main-file-input" style="margin-top: 0.5rem;">
+                        <button type="button" id="main-upload-btn" class="btn upload-btn" style="margin-top: 0.5rem;">Subir Imagen</button>
+                        <small id="main-upload-status" class="upload-status"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="countdown-date">Fecha del Contador</label>
+                        <input type="datetime-local" id="countdown-date">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Sección "Oktoberfest & Bierland"</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="section-info-title">Título de la Sección</label>
+                        <input type="text" id="section-info-title">
+                    </div>
+                </div>
+                
+                <h4 style="padding: 0 1.5rem; color: #333;">Caja Izquierda</h4>
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+                    <div class="form-group" style="grid-column: 1 / 3;">
+                        <label>Título (Caja 1)</label>
+                        <input type="text" id="infobox1-title">
+                    </div>
+                    <div class="form-group">
+                        <label>Fondo (Caja 1)</label>
+                        <input type="color" id="infobox1-bg">
+                    </div>
+                    <div class="form-group">
+                        <label>Texto (Caja 1)</label>
+                        <input type="color" id="infobox1-color">
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Descripción (Caja 1)</label>
+                        <textarea id="infobox1-text" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <h4 style="padding: 0 1.5rem; color: #333;">Caja Derecha</h4>
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+                    <div class="form-group" style="grid-column: 1 / 3;">
+                        <label>Título (Caja 2)</label>
+                        <input type="text" id="infobox2-title">
+                    </div>
+                    <div class="form-group">
+                        <label>Fondo (Caja 2)</label>
+                        <input type="color" id="infobox2-bg">
+                    </div>
+                    <div class="form-group">
+                        <label>Texto (Caja 2)</label>
+                        <input type="color" id="infobox2-color">
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Descripción (Caja 2)</label>
+                        <textarea id="infobox2-text" rows="3"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="card-actions">
+                <button type="submit" id="save-global-btn" class="btn btn-save" style="width: 100%;">Guardar Toda la Página</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const API_URL = 'http://localhost:5000/api';
+            const token = localStorage.getItem('authToken');
+            if (!token) window.location.href = 'login.html';
+
+            // --- Mapeo de todos los elementos del formulario ---
+            const ui = {
+                form: document.getElementById('global-form'),
+                // General
+                mainBgColor: document.getElementById('main-bg-color'),
+                mainTextColor: document.getElementById('main-text-color'),
+                // Header
+                mainTitle: document.getElementById('main-title'),
+                headerBgColor: document.getElementById('header-bg-color'),
+                // Portada
+                mainImage: document.getElementById('main-image'),
+                countdown: document.getElementById('countdown-date'),
+                // Uploader
+                fileInput: document.getElementById('main-file-input'),
+                uploadBtn: document.getElementById('main-upload-btn'),
+                uploadStatus: document.getElementById('main-upload-status'),
+                // Sección Info
+                sectionInfoTitle: document.getElementById('section-info-title'),
+                // Caja 1
+                box1Title: document.getElementById('infobox1-title'),
+                box1Text: document.getElementById('infobox1-text'),
+                box1Bg: document.getElementById('infobox1-bg'),
+                box1Color: document.getElementById('infobox1-color'),
+                // Caja 2
+                box2Title: document.getElementById('infobox2-title'),
+                box2Text: document.getElementById('infobox2-text'),
+                box2Bg: document.getElementById('infobox2-bg'),
+                box2Color: document.getElementById('infobox2-color'),
+                // Logout
+                logoutBtn: document.getElementById('logout-btn')
+            };
+
+            // --- 3. Cargar Datos Actuales ---
+            (async function loadConfig() {
+                try {
+                    const response = await fetch(`${API_URL}/config`);
+                    const config = await response.json();
+
+                    // Rellenar todos los campos
+                    ui.mainImage.value = config.mainImagePath || '';
+                    ui.mainTitle.value = config.mainTitle || '';
+                    ui.headerBgColor.value = config.headerBgColor || '#0A295F';
+                    ui.mainBgColor.value = config.bodyBgColor || '#ffffff';
+                    ui.mainTextColor.value = config.bodyTextColor || '#000000';
+                    
+                    ui.sectionInfoTitle.value = config.sectionInfo_Title || '';
+                    
+                    ui.box1Title.value = config.infoBox1_Title || '';
+                    ui.box1Text.value = config.infoBox1_Text || '';
+                    ui.box1Bg.value = config.infoBox1_Bg || '#0070C6';
+                    ui.box1Color.value = config.infoBox1_Color || '#ffffff';
+                    
+                    ui.box2Title.value = config.infoBox2_Title || '';
+                    ui.box2Text.value = config.infoBox2_Text || '';
+                    ui.box2Bg.value = config.infoBox2_Bg || '#ffdd57';
+                    ui.box2Color.value = config.infoBox2_Color || '#000000';
+                    
+                    if (config.countdownTarget) {
+                        const date = new Date(config.countdownTarget);
+                        date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+                        ui.countdown.value = date.toISOString().slice(0, 16);
+                    }
+                } catch (error) {
+                    console.error('Error cargando config:', error);
+                    alert('No se pudo cargar la configuración.');
+                }
+            })();
+
+            // --- 4. Guardar Datos ---
+            ui.form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const dataToSave = {
+                    mainImagePath: ui.mainImage.value,
+                    countdownTarget: ui.countdown.value ? new Date(ui.countdown.value) : null,
+                    mainTitle: ui.mainTitle.value,
+                    headerBgColor: ui.headerBgColor.value,
+                    bodyBgColor: ui.mainBgColor.value,
+                    bodyTextColor: ui.mainTextColor.value,
+                    sectionInfo_Title: ui.sectionInfoTitle.value,
+                    infoBox1_Title: ui.box1Title.value,
+                    infoBox1_Text: ui.box1Text.value,
+                    infoBox1_Bg: ui.box1Bg.value,
+                    infoBox1_Color: ui.box1Color.value,
+                    infoBox2_Title: ui.box2Title.value,
+                    infoBox2_Text: ui.box2Text.value,
+                    infoBox2_Bg: ui.box2Bg.value,
+                    infoBox2_Color: ui.box2Color.value
+                };
+
+                try {
+                    const response = await fetch(`${API_URL}/config`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                        body: JSON.stringify(dataToSave)
+                    });
+                    if (!response.ok) throw new Error('Error al guardar.');
+                    alert('¡Página principal guardada con éxito!');
+                } catch (error) {
+                    console.error('Error guardando:', error);
+                    alert('Error al guardar: ' + error.message);
+                }
+            });
+
+            // --- 5. Lógica del Uploader ---
+            ui.uploadBtn.addEventListener('click', async () => {
+                const file = ui.fileInput.files[0];
+                if (!file) return alert('Selecciona un archivo primero.');
+                
+                // Validar que sea una imagen
+                if (!file.type.startsWith('image/')) {
+                    alert('Por favor, selecciona un archivo de imagen válido.');
+                    return;
+                }
+
+                ui.uploadStatus.textContent = 'Subiendo...';
+                ui.uploadStatus.style.color = 'blue';
+                
+                const formData = new FormData();
+                formData.append('image', file);
+
+                try {
+                    const res = await fetch(`${API_URL}/upload`, {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${token}` },
+                        body: formData
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.msg || 'Error al subir');
+
+                    ui.mainImage.value = data.filePath;
+                    ui.uploadStatus.textContent = '¡Imagen subida correctamente!';
+                    ui.uploadStatus.style.color = 'green';
+                } catch (err) {
+                    ui.uploadStatus.textContent = `Error: ${err.message}`;
+                    ui.uploadStatus.style.color = 'red';
+                }
+            });
+
+            // --- 6. Logout ---
+            ui.logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('authToken');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+</html>

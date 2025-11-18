@@ -1,0 +1,251 @@
+/* admin/admin.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para la página de login */
+.login-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #0A295F;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0070C6;
+}
+
+.error-text {
+    color: #d93025;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    display: none;
+}
+
+/* --- Estilos del Dashboard --- */
+.admin-header {
+    width: 100%;
+    background: #0A295F;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 1000; /* Asegura que el header esté por encima del contenido */
+    height: 80px; /* Altura fija para consistencia */
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.btn-logout {
+    background: #ffdd57;
+    color: #0A295F;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-logout:hover {
+    background: #fff;
+}
+
+/* Contenido principal del dashboard - CORREGIDO */
+.dashboard-container {
+    padding-top: 80px; /* Espacio para el header fijo de 80px */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+    display: block; /* Asegura que no sea flex o grid */
+    min-height: calc(100vh - 80px); /* Altura mínima para evitar problemas de visualización */
+}
+
+/* Lista de tarjetas */
+#franquicias-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem; /* Espacio adicional */
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background-color: #f4f4f4;
+    padding: 1rem;
+    align-self: center;
+    margin-top: 1rem;
+    border-radius: 4px;
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    margin: 0 0 0.5rem;
+    color: #0A295F;
+}
+
+.card-content p {
+    margin: 0;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* --- ESTILOS MEJORADOS PARA LOS BOTONES --- */
+.card-actions {
+    padding: 1rem 1.5rem;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem; /* Separación entre botones */
+}
+
+.card-actions .btn {
+    flex: 1; /* Ambos botones ocupan el mismo ancho */
+    min-width: 0; /* Permite que se ajusten correctamente */
+    width: auto; /* Ancho automático para flex */
+    padding: 0.6rem 0.75rem; /* Padding consistente */
+    font-size: 0.9rem; /* Tamaño de fuente consistente */
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.btn-edit {
+    background: #0070C6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.btn-edit:hover {
+    background: #0A295F;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.btn-delete:hover {
+    background: #c82333;
+}
+
+/* --- ESTILOS DEL UPLOADER (ORGANIZADOS Y SIN DUPLICADOS) --- */
+.upload-btn {
+    margin-top: 0.5rem;
+    background: #555;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+    width: auto; /* Ancho automático para botones de upload */
+}
+
+.upload-btn:hover {
+    background: #333;
+}
+
+.upload-status {
+    color: green;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* Asegurar que el body del dashboard tenga el estilo correcto */
+body.dashboard-page {
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}

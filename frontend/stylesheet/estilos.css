@@ -1,0 +1,363 @@
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #0070C6;
+    color: #fff;
+    line-height: 1.6;
+    padding-top: 70px; /* Para compensar el header fijo */
+}
+
+.titulo-principal {
+    text-align: left;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    padding: 0 1rem;
+    flex: 1;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #0A295F;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.header-nav.hidden {
+    transform: translateY(-100%);
+}
+
+/* Botón hamburguesa */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 15;
+    padding: 0;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    margin: 3px 0;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+/* Menú navegación */
+#main-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+}
+
+#main-nav a:hover {
+    text-decoration: underline;
+    color: #ffdd57;
+}
+
+/* Títulos y subtítulos */
+.subtitulo {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 2rem 0 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(30,30,30,0.32);
+    padding: 0 1rem;
+}
+
+.oktoberfest-info {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #0000;
+    text-shadow: 0 1px 3px rgba(30,30,30,0.32);
+}
+
+.oktoberfest-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 2rem 1rem;
+    justify-content: center;
+}
+
+.info-general, .info-bierland {
+    background: #0A295F;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.info-general h2, .info-bierland h2 {
+    margin-top: 0;
+    color: #ffdd57;
+}
+
+/* Contador */
+.contador-container {
+    background: #ffdd57; /* Amarillo de la paleta */
+    color: #0A295F;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+    max-width: 300px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.contador-container h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+}
+
+#contador {
+    font-size: 1.5rem;
+    font-weight: 700;
+    min-height: 2rem;
+}
+
+.portada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #063c74;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.portada img {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* Sección Selección */
+.seleccion-section {
+    padding: 0 1rem 2rem;
+}
+
+.franquicias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.2rem;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.franquicia {
+    background: rgba(255,255,255,0.08);
+    padding: 1.2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+
+.franquicia:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 6px 32px rgba(0,0,0,0.18);
+    background: rgba(255,255,255,0.12);
+}
+
+.franquicia.proximamente {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.franquicia.proximamente:hover {
+    transform: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    background: rgba(255,255,255,0.08);
+}
+
+.franquicia img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    background: #fff;
+    padding: 0.5rem;
+}
+
+.franquicia span {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(30,30,30,0.32);
+}
+
+/* Sección Mapa */
+.mapa-section {
+    padding: 0 1rem 2rem;
+}
+
+.mapa-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.mapa-placeholder {
+    margin: 0;
+    font-style: italic;
+}
+
+/* RESPONSIVE: Menú hamburguesa */
+@media (max-width: 800px) {
+    .titulo-principal {
+        font-size: 1.4rem;
+        padding: 0 0.5rem;
+    }
+    
+    .header-nav {
+        padding: 0.8rem;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    #main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        background: #0A295F;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        z-index: 10;
+        padding: 1rem;
+        box-sizing: border-box;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+        gap: 0;
+    }
+    
+    #main-nav.active {
+        display: flex;
+    }
+    
+    #main-nav a {
+        padding: 0.8rem 1rem;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    #main-nav a:last-child {
+        border-bottom: none;
+    }
+    
+    .portada {
+        padding: 0.8rem;
+    }
+    
+    .portada img {
+        border-radius: 8px;
+    }
+    
+    .oktoberfest-flex {
+        margin: 1.5rem 0.8rem;
+        gap: 1rem;
+    }
+    
+    .info-general, .info-bierland {
+        min-width: 100%;
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+    
+    .subtitulo {
+        font-size: 1.6rem;
+        margin: 1.5rem 0 1rem;
+    }
+    
+    .franquicias {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 1rem;
+    }
+    
+    .franquicia {
+        padding: 1rem;
+    }
+    
+    .franquicia img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .franquicia span {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-principal {
+        font-size: 1.2rem;
+    }
+    
+    .subtitulo {
+        font-size: 1.4rem;
+    }
+    
+    .franquicias {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Animación menú hamburguesa */
+.hamburger.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
