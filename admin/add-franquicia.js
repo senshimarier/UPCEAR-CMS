@@ -1,7 +1,7 @@
 // admin/add-franquicia.js
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:5000/api/franquicias';
-    const UPLOAD_URL = 'http://localhost:5000/api/upload'; // <-- AÑADIR
+    const API_URL = 'https://upcear-cms.onrender.com/api/franquicias';
+    const UPLOAD_URL = 'https://upcear-cms.onrender.com/api/upload'; // <-- AÑADIR
     const token = localStorage.getItem('authToken');
 
     // --- 1. Seguridad ---
