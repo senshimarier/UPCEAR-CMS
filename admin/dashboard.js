@@ -1,4 +1,4 @@
-// admin/dashboard.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const API_URL = 'https://upcear-cms.onrender.com/api';
     const token = localStorage.getItem('authToken');
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 3. Cargar las franquicias ---
     async function cargarFranquicias() {
         try {
-            // Esta ruta es pública (GET), no necesita el token, pero la usaremos
+            // Ruta pública (GET), no necesita pero usa token, 
             // para mostrar la lista de items a editar.
             const response = await fetch(`${API_URL}/franquicias`);
             if (!response.ok) {
@@ -36,11 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 4. Renderizar (dibujar) las franquicias en el HTML ---
+    // --- 4. Renderizar las franquicias en el HTML ---
     function renderFranquicias(franquicias) {
         franquiciasContainer.innerHTML = ''; // Limpiar el contenedor
 
-        // URLs de tus sitios desplegados
+        // URLs de sitios desplegados
         const apiURL = 'https://upcear-cms.onrender.com';
         const publicSiteURL = 'https://upcear-cms.netlify.app';
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'card';
             
-            // --- ¡NUEVA LÓGICA DE IMAGEN! ---
+            // --- Lógica de imágenes ---
             let logoPath = '';
             if (!franquicia.logo_path) {
                 // No hay imagen
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.remove(); // Elimina la tarjeta del DOM sin recargar
                 
                 } catch (error) {
-                    // Este 'error.message' ahora mostrará el error correcto
+                    // Error al eliminar
                     console.error('Error eliminando:', error);
                     alert(`Error: ${error.message}`);
                 }
