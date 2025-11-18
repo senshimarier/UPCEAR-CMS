@@ -1,11 +1,10 @@
-// backend/models/Franquicia.js
 const mongoose = require('mongoose');
 
 // Sub-esquemas para Características y Especificaciones
 const ItemSchema = new mongoose.Schema({
     key: { type: String, required: true }, // e.g., "Aroma: mandarina fresca" o "ABV: 4.6%"
     // El campo 'value' se podría usar para una separación más limpia, pero por simplicidad
-    // usaremos solo 'key' para guardar el string completo tal como lo tienes actualmente.
+    // usa solo 'key' para guardar el string completo.
 });
 
 const CervezaSchema = new mongoose.Schema({
