@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- FUNCIÓN 4: RENDERIZAR CERVEZA (¡AQUÍ ESTÁ EL ARREGLO!) ---
+    // --- FUNCIÓN 4: RENDERIZAR CERVEZA (ARREGLO) ---
     function mostrarContenidoCerveza(dataKey) {
         if (!datosFranquicia) return;
         const cerveza = datosFranquicia.cervezas.find(c => c.data_key === dataKey);
