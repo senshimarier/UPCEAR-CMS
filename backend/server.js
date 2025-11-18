@@ -3,7 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const path = require('path'); // <-- AÑADE ESTA LÍNEA (Módulo nativo de Node)
+const path = require('path'); // (Módulo nativo de Node)
 
 // Cargar variables de entorno y conectar DB
 dotenv.config();
@@ -11,7 +11,7 @@ connectDB();
 
 const app = express();
 
-// --- CONFIGURACIÓN DE CORS ACTUALIZADA ---
+// --- CONFIGURACIÓN DE CORS ---
 const whiteList = [
     'https://upcear-cms.netlify.app', 
     'https://upcear-cms-admin.netlify.app'
@@ -30,8 +30,7 @@ app.use(cors({
 // Middlewares
 app.use(express.json());
 
-// --- AÑADE ESTAS LÍNEAS ---
-// Hacemos "pública" la carpeta 'uploads'
+// "Pública" la carpeta 'uploads'
 // Esto permite que http://localhost:5000/uploads/imagen.jpg funcione
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // -----------------------------
@@ -39,8 +38,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Rutas de la API
 app.use('/api/franquicias', require('./routes/franquiciaRoutes'));
 app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/config', require('./routes/configRoutes')); // <--- AÑADE ESTA LÍNEA
-app.use('/api/upload', require('./routes/uploadRoutes')); // <--- AÑADE ESTA LÍNEA
+app.use('/api/config', require('./routes/configRoutes'));
+app.use('/api/upload', require('./routes/uploadRoutes'));
 
 const PORT = process.env.PORT || 5000;
 
