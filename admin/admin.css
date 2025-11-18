@@ -88,7 +88,7 @@ h2 {
     top: 0;
     left: 0;
     box-sizing: border-box;
-    z-index: 1000; /* Asegura que el header esté por encima del contenido */
+    z-index: 1000; /* Header encima del contenido */
     height: 80px; /* Altura fija para consistencia */
 }
 
@@ -112,7 +112,7 @@ h2 {
     background: #fff;
 }
 
-/* Contenido principal del dashboard - CORREGIDO */
+/* Contenido principal del dashboard */
 .dashboard-container {
     padding-top: 80px; /* Espacio para el header fijo de 80px */
     width: 100%;
@@ -121,7 +121,7 @@ h2 {
     padding-left: 1rem;
     padding-right: 1rem;
     box-sizing: border-box;
-    display: block; /* Asegura que no sea flex o grid */
+    display: block;
     min-height: calc(100vh - 80px); /* Altura mínima para evitar problemas de visualización */
 }
 
@@ -182,7 +182,7 @@ h2 {
 
 .card-actions .btn {
     flex: 1; /* Ambos botones ocupan el mismo ancho */
-    min-width: 0; /* Permite que se ajusten correctamente */
+    min-width: 0; /* Ajuste correcto */
     width: auto; /* Ancho automático para flex */
     padding: 0.6rem 0.75rem; /* Padding consistente */
     font-size: 0.9rem; /* Tamaño de fuente consistente */
@@ -218,7 +218,7 @@ h2 {
     background: #c82333;
 }
 
-/* --- ESTILOS DEL UPLOADER (ORGANIZADOS Y SIN DUPLICADOS) --- */
+/* --- ESTILOS DEL UPLOADER ---*/
 .upload-btn {
     margin-top: 0.5rem;
     background: #555;
@@ -243,7 +243,7 @@ h2 {
     display: block;
 }
 
-/* Asegurar que el body del dashboard tenga el estilo correcto */
+/* Estilos Dashboard */
 body.dashboard-page {
     background-color: #f0f2f5;
     margin: 0;
