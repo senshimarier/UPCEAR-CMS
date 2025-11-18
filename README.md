@@ -68,6 +68,8 @@ Bash
 npm run dev 
 (Nota: El package.json muestra un script start, pero nodemon está como devDependency, usualmente usado con npm run dev. Si no existe dev, usa npm start).
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 (English Version)
 Bierland-CMS (UPCEAR-CMS)
 A simple Content Management System (CMS) designed to manage the "Bierland Oktober Fest 2025" event website.
@@ -137,4 +139,5 @@ Bash
 
 npm run dev
 (Note: The package.json lists a start script, but nodemon is a devDependency, usually run with npm run dev. If dev is not defined, use npm start).
+
 
