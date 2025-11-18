@@ -1,4 +1,4 @@
-// admin/auth.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const emailInput = document.getElementById('email');
@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.msg || 'Error al iniciar sesión');
             }
 
-            // ¡ÉXITO!
-            // Guardamos el token en el almacenamiento local del navegador
+            // Operación exitosa
+            // Token en el almacenamiento local del navegador
             localStorage.setItem('authToken', data.token);
             
-            // Redirigimos al cliente al panel principal
+            // Redirección a panel principal
             window.location.href = 'dashboard.html';
 
         } catch (error) {
