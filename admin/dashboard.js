@@ -40,26 +40,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderFranquicias(franquicias) {
         franquiciasContainer.innerHTML = ''; // Limpiar el contenedor
 
+        // URLs de tus sitios desplegados
+        const apiURL = 'https://upcear-cms.onrender.com';
+        const publicSiteURL = 'https://upcear-cms.netlify.app';
+
         franquicias.forEach(franquicia => {
             const card = document.createElement('div');
             card.className = 'card';
             
-            // --- Lógica de Ruta de Imagen ---
+            // --- ¡NUEVA LÓGICA DE IMAGEN! ---
             let logoPath = '';
-            if (franquicia.logo_path && franquicia.logo_path.startsWith('uploads/')) {
-                // Es una imagen subida, la sirve el backend
-                logoPath = `https://upcear-cms.onrender.com/${franquicia.logo_path}`;
-            } else if (franquicia.logo_path) {
-                // Es una imagen estática (ej. src/chelab_logo.png)
-                logoPath = `../frontend/${franquicia.logo_path}`;
+            if (!franquicia.logo_path) {
+                // No hay imagen
+                logoPath = `${publicSiteURL}/src/proximamente.png`;
+            } else if (franquicia.logo_path.startsWith('uploads/')) {
+                // 1. Es una imagen SUBIDA (ej: "uploads/image.jpg")
+                logoPath = `${apiURL}/${franquicia.logo_path}`;
+            } else if (franquicia.logo_path.startsWith('src/')) {
+                // 2. Es una ruta estática LIMPIA (ej: "src/logo.png")
+                logoPath = `${publicSiteURL}/${franquicia.logo_path}`;
             } else {
-                // Si no hay logo_path, usar una imagen por defecto o placeholder
-                logoPath = '../frontend/src/proximamente.png'; // Imagen por defecto
+                // 3. Es una ruta "sucia" o desconocida (ej: "../src/logo.png")
+                // Se asume que es estática y se intenta limpiar
+                const cleanPath = franquicia.logo_path.replace('../', '').replace('../', '');
+                logoPath = `${publicSiteURL}/${cleanPath}`;
             }
             // --------------------------------
-            
+
             card.innerHTML = `
-                <img src="${logoPath}" alt="${franquicia.nombre}" class="card-logo">
+                <img src="${logoPath}" alt="${franquicia.nombre}" class="card-logo" style="background: white; padding: 5px;">
                 <div class="card-content">
                     <h3>${franquicia.nombre}</h3>
                     <p>Slug: ${franquicia.slug}</p>
@@ -72,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Listener para el botón EDITAR ---
             card.querySelector('.btn-edit').addEventListener('click', () => {
-                // Redirigir a la página de edición pasando el 'slug' en la URL
                 window.location.href = `edit.html?slug=${franquicia.slug}`;
             });
 
@@ -80,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.querySelector('.btn-delete').addEventListener('click', async (e) => {
                 const slug = e.target.dataset.slug;
                 
-                // Pedir confirmación
                 if (!confirm(`¿Estás seguro de que quieres eliminar la franquicia "${franquicia.nombre}" (${slug})?\n\n¡ESTA ACCIÓN NO SE PUEDE DESHACER!\nSe borrarán todas las cervezas asociadas.`)) {
                     return;
                 }
@@ -94,9 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
+                    // IMPORTANTE: Cambiamos cómo leemos la respuesta
                     if (!response.ok) {
-                        const err = await response.json();
-                        throw new Error(err.msg || 'Error al eliminar');
+                        // Si falla, intenta leer JSON
+                        let errorMsg = 'Error al eliminar';
+                        try {
+                            const err = await response.json();
+                            errorMsg = err.msg;
+                        } catch (e) {
+                            // Si falla el JSON (ej. error 500 HTML), usa el texto de estado
+                            errorMsg = response.statusText;
+                        }
+                        throw new Error(errorMsg);
                     }
                     
                     const result = await response.json();
@@ -104,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.remove(); // Elimina la tarjeta del DOM sin recargar
                 
                 } catch (error) {
+                    // Este 'error.message' ahora mostrará el error correcto
                     console.error('Error eliminando:', error);
                     alert(`Error: ${error.message}`);
                 }
@@ -111,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             franquiciasContainer.appendChild(card);
         });
-    }
+    } // <-- Fin de renderFranquicias
 
     // --- Iniciar la carga de datos al abrir la página ---
     cargarFranquicias();
