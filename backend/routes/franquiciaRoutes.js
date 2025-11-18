@@ -1,4 +1,3 @@
-// backend/routes/franquiciaRoutes.js
 const express = require('express');
 const router = express.Router();
 const { 
@@ -9,7 +8,7 @@ const {
     updateCerveza,
     addCerveza,
     deleteCerveza,
-    deleteFranquicia // <--- ¡AÑADE ESTA IMPORTACIÓN!
+    deleteFranquicia
 } = require('../controllers/franquiciaController');
 
 // Importa el middleware de protección
@@ -20,7 +19,7 @@ router.get('/', getFranquicias);
 router.get('/:slug', getFranquiciaBySlug); 
 
 // --- Rutas Protegidas (CMS - Solo para usuarios con token) ---
-// (Simplemente añadimos 'protect' antes del controlador)
+// ('protect' antes del controlador)
 
 // Protege la creación de franquicias
 router.post('/', protect, createFranquicia);
@@ -29,7 +28,7 @@ router.post('/', protect, createFranquicia);
 router.put('/:slug', protect, updateFranquicia);
 
 // Protege la eliminación de franquicias
-router.delete('/:slug', protect, deleteFranquicia); // <--- ¡AÑADE ESTA RUTA!
+router.delete('/:slug', protect, deleteFranquicia);
 
 // Rutas de Cervezas
 router.put('/:slug/cerveza/:data_key', protect, updateCerveza);
