@@ -4,15 +4,13 @@ const jwt = require('jsonwebtoken');
 
 // Función para generar un Token JWT
 const generateToken = (id) => {
-    // El 'JWT_SECRET' debe estar en tu .env para seguridad
-    // Por ahora lo definimos aquí:
-    const JWT_SECRET = 'miclavesecreta123'; 
+
+    const JWT_SECRET = ''; 
     return jwt.sign({ id }, JWT_SECRET, {
         expiresIn: '1d' // El token expira en 1 día
     });
 };
 
-// @desc    Registrar un nuevo usuario (solo para ti, por ahora)
 // @route   POST /api/auth/register
 exports.registerUser = async (req, res) => {
     const { email, password } = req.body;
@@ -45,7 +43,7 @@ exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // 1. Buscar al usuario y traer la contraseña (que ocultamos con 'select: false')
+        // 1. Buscar al usuario y traer la contraseña (que oculta con 'select: false')
         const user = await User.findOne({ email }).select('+password');
 
         if (!user) {
