@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- CONFIGURACIÓN ---
-    const API_BASE_URL = 'http://localhost:5000/api'; // URL base del backend
-    const BACKEND_URL = 'http://localhost:5000';    // URL para imágenes de 'uploads'
+    const API_BASE_URL = 'https://upcear-cms.onrender.com/api'; // URL base del backend
+    const BACKEND_URL = 'https://upcear-cms.onrender.com';    // URL para imágenes de 'uploads'
     
     // --- ELEMENTOS DEL DOM ---
     const navCervezas = document.getElementById('nav-cervezas');
