@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function iniciarContadorYContenido() {
         try {
-            const response = await fetch('http://localhost:5000/api/config');
+            const response = await fetch('https://upcear-cms.onrender.com/api/config');
             if (!response.ok) throw new Error('No se cargó la config');
             
             const config = await response.json();
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mainImage && config.mainImagePath) {
                 let imgPath = config.mainImagePath;
                 if (imgPath.startsWith('uploads/')) {
-                    mainImage.src = `http://localhost:5000/${imgPath}`;
+                    mainImage.src = `https://upcear-cms.onrender.com/${imgPath}`;
                 } else {
                     mainImage.src = imgPath;
                 }
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- CÓDIGO NUEVO PARA CARGAR FRANQUICIAS DINÁMICAMENTE ---
     
-    const API_BASE_URL = 'http://localhost:5000/api/franquicias';
+    const API_BASE_URL = 'https://upcear-cms.onrender.com/api/franquicias';
     const franquiciasContainer = document.getElementById('franquicias-container');
 
     async function cargarFranquicias() {
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let logoPath = '';
                 if (franquicia.logo_path && franquicia.logo_path.startsWith('uploads/')) {
                     // Es una imagen subida, la sirve el backend
-                    logoPath = `http://localhost:5000/${franquicia.logo_path}`;
+                    logoPath = `https://upcear-cms.onrender.com/${franquicia.logo_path}`;
                 } else if (franquicia.logo_path) {
                     // Es una imagen estática (ej. src/chelab_logo.png)
                     logoPath = `${franquicia.logo_path}`; // index.html está en la raíz, no necesita ../
