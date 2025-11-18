@@ -1,4 +1,4 @@
-// admin/edit.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const API_URL = 'https://upcear-cms.onrender.com/api';
     const token = localStorage.getItem('authToken');
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveGeneralBtn = document.getElementById('save-general-btn');
     const cervezasListContainer = document.getElementById('cervezas-editor-list');
     
-    let currentSlug = ''; // Guardará el slug de la franquicia que estamos editando
+    let currentSlug = ''; // Guardará el slug de la franquicia que se está editando
 
     // --- 1. Seguridad y Carga de Datos ---
     (async function init() {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 3. Renderizar (dibujar) los formularios de las Cervezas ---
+    // --- 3. Renderizar los formularios de las Cervezas ---
     function renderCervezasEditor(cervezas) {
         cervezasListContainer.innerHTML = ''; // Limpiar
 
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="form-group">
                     <label>Ruta Imagen</label>
-                    <!-- AÑADE ESTE CAMPO DE TEXTO QUE FALTABA -->
+                    
                     <input type="text" value="${cerveza.imagen}" data-field="imagen" readonly>
                     
                     <input type="file" data-field="file-input" id="file-input-${cerveza.data_key}" style="margin-top: 0.5rem;" accept=".jpg,.jpeg,.png">
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     especificaciones: especificacionesArray
                 };
 
-                // ¡Llamada a la API Protegida!
+                // Llamada a la API protegida
                 await guardarCerveza(currentSlug, dataKey, cervezaData);
             });
 
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     
                     alert('Cerveza eliminada.');
-                    location.reload(); // Recargamos la página para ver la lista actualizada
+                    location.reload(); // Recarga la página para ver la lista actualizada
                 
                 } catch (error) {
                     console.error('Error eliminando:', error);
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         method: 'POST',
                         headers: {
                             'Authorization': `Bearer ${token}`
-                            // NO pongas 'Content-Type', el navegador lo hace por ti
+                            
                         },
                         body: formData
                     });
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const data = await res.json();
                     if (!res.ok) throw new Error(data.msg || 'Error al subir');
 
-                    // ¡Éxito! Pone la nueva ruta en el campo de texto
+                    // Éxito. Pone la nueva ruta en el campo de texto
                     imagenTextInput.value = data.filePath;
                     statusLabel.textContent = '¡Subida!';
 
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // <-- ¡La llave!
+                    'Authorization': `Bearer ${token}` // La llave
                 },
                 body: JSON.stringify(franquiciaData)
             });
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // <-- ¡La llave!
+                    'Authorization': `Bearer ${token}` // La llave
                 },
                 body: JSON.stringify(data)
             });
@@ -254,12 +254,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 7. Lógica del formulario AÑADIR CERVEZA (CORREGIDA) ---
-    const addBtn = document.getElementById('add-cerveza-btn'); // <-- Cambiado de add-cerveza-form
+    // --- 7. Lógica del formulario Añadir Cerveza ---
+    const addBtn = document.getElementById('add-cerveza-btn');
     const addErrorMessage = document.getElementById('add-error-message');
 
-    addBtn.addEventListener('click', async (e) => { // <-- Cambiado de 'submit' a 'click'
-        // Ya no necesitamos e.preventDefault()
+    addBtn.addEventListener('click', async (e) => { // 'submit' a 'click'
+        
         addErrorMessage.style.display = 'none';
 
         // Recolectar datos del formulario "Añadir"
@@ -295,9 +295,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.msg || 'Error al crear la cerveza');
             }
 
-            // ¡Éxito!
+            // Éxito
             alert(`¡Cerveza "${data.nombre}" añadida con éxito!`);
-            location.reload(); // Recargamos la página para ver la lista actualizada
+            location.reload(); // Recarga la página para ver la lista actualizada
 
         } catch (error) {
             console.error('Error añadiendo cerveza:', error);
@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 8. Lógica del botón SUBIR IMAGEN (Añadir Nuevo) ---
+    // --- 8. Lógica del botón Subir Imágen (Añadir Nuevo) ---
     const addUploadBtn = document.getElementById('add-upload-btn');
     const addFileInput = document.getElementById('add-file-input');
     const addImagenTextInput = document.getElementById('add-imagen');
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
             if (!res.ok) throw new Error(data.msg || 'Error al subir');
 
-            // ¡Éxito! Pone la nueva ruta en el campo de texto de "Añadir"
+            // Éxito. Pone la nueva ruta en el campo de texto de "Añadir"
             addImagenTextInput.value = data.filePath;
             addUploadStatus.textContent = '¡Subida!';
             addUploadStatus.style.color = 'green';
